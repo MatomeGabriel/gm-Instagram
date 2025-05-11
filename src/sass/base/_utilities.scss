@@ -1,0 +1,39 @@
+.u-padding-8 {
+  padding: 8px;
+}
+
+.js_btn-like {
+  .js_like {
+    display: block;
+  }
+  .js_liked {
+    display: none;
+  }
+
+  &--liked {
+    .js_like {
+      display: none;
+    }
+    .js_liked {
+      display: block;
+    }
+  }
+}
+
+.js_btn-bookmark {
+  .js_bookmark {
+    display: block;
+  }
+  .js_bookmarked {
+    display: none;
+  }
+
+  &--bookmarked {
+    .js_bookmark {
+      display: none;
+    }
+    .js_bookmarked {
+      display: block;
+    }
+  }
+}

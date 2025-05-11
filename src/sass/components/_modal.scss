@@ -1,0 +1,32 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+.modal {
+  position: absolute;
+  width: 80vw;
+  height: 80vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  display: flex;
+  background-color: $color-white;
+
+  &-img-box {
+    width: 40%;
+  }
+  &-comments-box {
+    width: 60%;
+  }
+  &-img {
+    @include object-cover;
+  }
+
+  &-post-header {
+    padding: 1.4rem 4px 1.4rem 1.6rem;
+    @include border-bottom-1;
+  }
+
+  &-comments {
+    padding: 1.6rem;
+  }
+}

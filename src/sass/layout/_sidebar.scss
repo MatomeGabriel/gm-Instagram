@@ -1,0 +1,19 @@
+@use "../abstracts/variables" as *;
+aside {
+  height: 100vh;
+  overflow-y: auto;
+  flex-basis: $sidebar-width;
+}
+
+@media (max-width: $max-width-lg) {
+  aside {
+    flex-basis: auto;
+  }
+}
+@media (max-width: 768px) {
+  aside {
+    order: 1;
+    height: auto;
+    width: 100%;
+  }
+}

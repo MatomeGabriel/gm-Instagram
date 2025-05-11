@@ -1,0 +1,125 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1.9rem;
+  border-right: 1px solid $color-grey-light-2;
+  padding: 0.8rem 1.2rem 2rem 1.2rem;
+  height: 100vh;
+
+  &-logo {
+    padding: 3.2rem 0 1.6rem 1.2rem;
+
+    &-icon {
+      display: none;
+    }
+
+    &-img {
+      display: block;
+    }
+  }
+
+  &-items {
+    list-style-type: none;
+    font-size: 1.6rem;
+    line-height: 1.25;
+  }
+
+  &-item {
+    margin: 2px 0;
+
+    &-link {
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
+      text-decoration: none;
+      color: $color-dark;
+      padding: 1.2rem;
+      border-radius: 0.8rem;
+
+      &:hover {
+        background-color: $color-grey-light-1;
+      }
+    }
+    &--active &-link {
+      font-weight: 700;
+    }
+    &--active &-icon {
+      font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+    }
+  }
+}
+
+@media (max-width: $max-width-lg) {
+  .nav {
+    &-logo {
+      padding-right: 1.2rem;
+
+      &-link {
+        border-radius: 100px;
+      }
+
+      &-img {
+        display: none;
+      }
+
+      &-icon {
+        display: block;
+      }
+    }
+
+    &-item {
+      &-link {
+        padding: 1.2rem;
+        margin: 0.8rem 0;
+        justify-content: center;
+      }
+      &-text {
+        display: none;
+      }
+
+      &-link {
+        border-radius: 100px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    height: auto;
+    position: fixed;
+    bottom: 0;
+    background-color: #fff;
+    width: 100vw;
+    overflow: hidden;
+    padding: 1rem;
+
+    border-top: 1px solid $color-grey-light-2;
+    &-items {
+      @include flex-center-all;
+      width: 100%;
+      justify-content: space-evenly;
+    }
+
+    &-items {
+    }
+    &-item {
+      margin: 0;
+    }
+
+    &-logo {
+      display: none;
+    }
+
+    &-item-link {
+      margin: 0;
+    }
+  }
+}

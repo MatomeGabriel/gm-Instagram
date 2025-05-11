@@ -1,0 +1,31 @@
+@use "../abstracts/variables" as *;
+.btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+
+  &-blue {
+    color: $color-blue;
+  }
+  &--semibold {
+    font-weight: 600;
+  }
+  &-normal {
+    font-weight: 400;
+  }
+  &:disabled {
+    cursor: default;
+    background-color: $color-grey;
+  }
+
+  &:hover,
+  &:active {
+    background-color: rgb(0, 129, 226);
+  }
+  &:disabled,
+  &:disabled:hover {
+    cursor: default;
+    background-color: $color-grey;
+  }
+}

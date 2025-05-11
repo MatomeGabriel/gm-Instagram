@@ -1,0 +1,105 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+$avatar-sizes: (
+  xsm: 2.4rem,
+  sm: 3.2rem,
+  md: 4.4rem,
+  lg: 5.6rem,
+  xl: 7.4rem,
+);
+
+$wrapper-sizes: (
+  md: 4.2rem,
+  lg: 6.6rem,
+);
+.avatar {
+  display: flex; //
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+
+  &-text {
+    margin-top: 1rem;
+    color: $color-dark;
+  }
+
+  &-only &-text {
+    display: none;
+  }
+
+  //   For Avatar Images
+  @each $name, $size in $avatar-sizes {
+    &-img-box--#{$name} {
+      @include setWidthAndHeight($size);
+      .avatar-img {
+        @include setWidthAndHeight($size);
+      }
+    }
+  }
+
+  &-img {
+    @include object-cover;
+    border-radius: 100px;
+    &-box {
+      position: relative;
+    }
+
+    &-box &-wrapper {
+      display: none;
+    }
+
+    &-wrapper {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  @each $name, $size in $wrapper-sizes {
+    &-img-box-wrapper--#{$name} {
+      .avatar-img-wrapper {
+        display: block;
+        @include setWidthAndHeight($size);
+      }
+    }
+  }
+}
+
+// when is --sm , target rwapper , and target image
+
+// sizes {
+// img-sm: 32,
+// img-md:44,
+// img-lg: 56
+
+// }
+
+// size{
+// wrapper-sm: 42
+// lg: 66
+
+// &--sm {
+//         @include setWidth($avatar-wrapper-size-lg);
+//       }
+
+//       &--sm .avatar-img-wrapper {
+//         @include setWidth($avatar-wrapper-size-md);
+//       }
+
+//       &--md {
+//         @include setWidth($avatar-size-md);
+//       }
+
+//       &--md .avatar-img-wrapper {
+//         display: none;
+//       }
+
+//       &--lg {
+//         @include setWidth($avatar-wrapper-size-lg);
+//       }
+
+//       &--lg .avatar-img-wrapper {
+//         @include setWidth($avatar-wrapper-size-lg);
+//       }

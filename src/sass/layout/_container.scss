@@ -1,0 +1,16 @@
+.container {
+  width: 100vw;
+  display: flex;
+  align-items: start;
+
+  &-login {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    width: 100%;
+  }
+}

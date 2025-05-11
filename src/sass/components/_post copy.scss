@@ -1,0 +1,104 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+.post {
+  @include flex-column;
+  width: 47rem;
+  padding-bottom: 1.6rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid $color-grey-light-2;
+
+  .avatar {
+    margin-left: 5px;
+  }
+  &-header {
+    @include flex-space-between-center;
+    margin-bottom: 1.2rem;
+  }
+
+  &-header-info {
+    @include flex-space-between-center;
+    width: 100%;
+
+    &-top {
+      @include flex-start-center;
+      font-size: 14px;
+      gap: 4px;
+    }
+
+    &-left {
+      cursor: pointer;
+    }
+  }
+
+  &-date {
+    color: $color-grey;
+    cursor: pointer;
+  }
+
+  &-content {
+    border: 1px solid $color-grey-light-2;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 100%;
+    height: 58rem;
+    &-img {
+      @include object-cover;
+    }
+  }
+  &-info-icons {
+    @include flex-space-between-center;
+    margin: 4px 0;
+    &-box-1 {
+      @include flex-align-center;
+      gap: 4px;
+    }
+
+    &-box-1 .btn {
+      @include flex-center-all;
+      padding: 0.8rem;
+    }
+  }
+
+  &-likes {
+    &-content {
+      @include sm-semibold-text;
+    }
+  }
+
+  &-user {
+    margin-top: 0.8rem;
+
+    &-content {
+      @include sm-normal-text;
+    }
+
+    &-link {
+      display: inline-block;
+    }
+  }
+
+  &-view-comments {
+    @include sm-normal-text;
+    margin-top: 0.8rem;
+  }
+
+  &-comments {
+    color: $color-grey;
+  }
+
+  &-add-comment {
+    margin-top: 0.8rem;
+    @include flex-space-between-center;
+    &-input {
+      @include sm-normal-text;
+      border: none;
+      outline: none;
+      flex: 1 1 100%;
+    }
+
+    &-icon {
+      padding-right: 4px;
+      cursor: pointer;
+    }
+  }
+}

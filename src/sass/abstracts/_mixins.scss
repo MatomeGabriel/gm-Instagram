@@ -1,0 +1,103 @@
+@use "../abstracts/variables" as *;
+@mixin setWidthAndHeight($size) {
+  width: $size;
+  height: $size;
+}
+
+@mixin set-width-height($size) {
+  width: $size;
+  height: $size;
+}
+
+@mixin flex-center-all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-column {
+}
+
+@mixin flex-space-between-center {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-start-center {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+@mixin flex-center-start {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+@mixin flex-align-center {
+  display: flex;
+  align-items: center;
+}
+@mixin flex-align-start {
+  display: flex;
+  align-items: start;
+}
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin object-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+@mixin md-semibold-text {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+@mixin md-normal-text {
+  font-size: 1.6rem;
+  line-height: 1.3;
+}
+
+@mixin sm-semibold-text {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+@mixin sm-normal-text {
+  font-size: 1.4rem;
+  line-height: 1.3;
+}
+
+@mixin xsm-normal-text {
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+@mixin xsm-semibold-text {
+  font-size: 1.4rem;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+@mixin generic-link {
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1.4rem;
+  line-height: 1.25;
+}
+
+@mixin border-bottom-1 {
+  border-bottom: 1px solid $color-grey-light-1;
+}
+
+@mixin respond-to-small-screens {
+  @media (max-width: 500px) {
+    @content;
+  }
+}

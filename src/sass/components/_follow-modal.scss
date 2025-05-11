@@ -1,0 +1,63 @@
+@use "../abstracts/mixins" as *;
+@use "../abstracts/variables" as *;
+.follow {
+  &-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 356px;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  //   som,e styles should be default no need to do them on the modal
+  &-modal {
+    .profile {
+      padding: 0.8rem 1.6rem;
+      justify-content: space-between;
+
+      &-dot,
+      &-datetime-container {
+        display: none;
+      }
+      &-avatar-reel {
+        display: none;
+      }
+
+      &-label {
+        @include flex-align-center;
+        padding: 7px 1.6rem;
+        background-color: $color-blue;
+        color: $color-white;
+        border-radius: 8px;
+      }
+    }
+  }
+}
+
+.modal {
+  &-header {
+    height: 43px;
+    @include flex-center-all;
+    border-bottom: 1px solid $color-grey-light-1;
+  }
+
+  &-like-container {
+    width: 100%;
+    @include flex-center-all;
+  }
+
+  &-like {
+    @include md-semibold-text;
+  }
+
+  &-like-btn-container {
+    min-width: 48px;
+    @include flex-center-all;
+    height: 100%;
+  }
+}

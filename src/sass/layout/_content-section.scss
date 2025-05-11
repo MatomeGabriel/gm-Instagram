@@ -1,0 +1,15 @@
+.content-section {
+  flex: 1 1 63rem;
+}
+
+@media (max-width: 1024px) {
+  .content-section {
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .content-section {
+    flex: 1 1 63rem;
+  }
+}

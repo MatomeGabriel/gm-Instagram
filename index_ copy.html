@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="app">
+      <div class="root">
+        <div class="modal">
+          <div class="modal-img-box">
+            <img
+              src="https://fakeimg.pl/350x200/ff0000,128/000,255"
+              alt=""
+              class="modal-img" />
+          </div>
+          <div class="modal-comments-box">
+            <div class="modal-post-header post-header">
+              <a href="#" class="avatar avatar-only">
+                <div
+                  class="avatar-img-box avatar-img-box--sm avatar-img-box-wrapper--md">
+                  <img
+                    src="https://i.pravatar.cc/150?img=15"
+                    alt="avatar"
+                    class="avatar-img" />
+                  <img
+                    class="avatar-img-wrapper"
+                    src="./img/Avatar-warepper-colorful.svg"
+                    alt="" />
+                </div>
+                <span class="avatar-text"></span>
+              </a>
+              <div class="post-header-info">
+                <div class="post-header-info-right">
+                  <div class="post-header-info-top">
+                    <a href="" class="user link js_user">
+                      <span class="user-text">user_15</span>
+                      <img src="./img/Verified-icon.svg" alt="" />
+                    </a>
+                    <span class="post-dot">•</span>
+                    <div class="post-date">9w</div>
+                    <span class="post-dot">•</span>
+                    <button class="btn btn-blue">Follow</button>
+                  </div>
+                  <div class="post-header-info-bottom"></div>
+                </div>
+                <div class="post-header-info-left">
+                  <img src="./img/more-1.svg" alt="" />
+                </div>
+              </div>
+            </div>
+            <div class="modal-comments-box">
+              <ul class="modal-comments">
+                <li class="modal-comment">
+                  <div class="modal-comment-avatar">
+                    <div class="modal-avatar">
+                      <div class="modal-avatar-img-box"></div>
+                      <div class="moda-avatar-details">
+                        <div class="modal-avatar-username"></div>
+                        <div class="modal-avatar-footer"></div>
+                      </div>
+                    </div>
+                    <btn class="btn modal-avatar-btn-like"></btn>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="post-info"></div>
+            <div class="post-add-comment"></div>
+          </div>
+        </div>
+        <div class="container">
+          <aside class="sidebar">
+            <nav class="nav">
+              <div class="nav-logo">
+                <a href="#" class="nav-logo-link">
+                  <img src="img/Logo.svg" alt="" class="nav-logo-img" />
+                  <img
+                    src="img/Instagram-icon.svg"
+                    alt=""
+                    class="nav-logo-icon" />
+                </a>
+              </div>
+
+              <ul class="nav-items">
+                <!-- Home -->
+                <li class="nav-item nav-item--active">
+                  <a href="#" class="nav-item-link">
+                    <span class="material-symbols-outlined nav-item-icon"
+                      >home</span
+                    >
+                    <span class="nav-item-text">Home</span>
+                  </a>
+                </li>
+
+                <!-- Search -->
+                <li class="nav-item">
+                  <a href="#" class="nav-item-link">
+                    <span class="material-symbols-outlined nav-item-icon"
+                      >search</span
+                    >
+                    <span class="nav-item-text">Search</span>
+                  </a>
+                </li>
+
+                <!-- Explore -->
+                <li class="nav-item">
+                  <a href="#" class="nav-item-link">
+                    <span class="material-symbols-outlined nav-item-icon"
+                      >explore</span
+                    >
+                    <span class="nav-item-text">Explore</span>
+                  </a>
+                </li>
+
+                <!-- Reels -->
+                <li class="nav-item">
+                  <a href="#" class="nav-item-link">
+                    <span class="material-symbols-outlined nav-item-icon"
+                      >movie</span
+                    >
+                    <span class="nav-item-text">Reels</span>
+                  </a>
+                </li>
+
+                <!-- Messages -->
+                <li class="nav-item">
+                  <a href="#" class="nav-item-link">
+                    <span class="material-symbols-outlined nav-item-icon"
+                      >chat</span
+                    >
+                    <span class="nav-item-text">Messages</span>
+                  </a>
+                </li>
+
+                <!-- Notifications -->
+                <li class="nav-item">
+                  <a href="#" class="nav-item-link">
+                    <span class="material-symbols-outlined nav-item-icon"
+                      >notifications</span
+                    >
+                    <span class="nav-item-text">Notifications</span>
+                  </a>
+                </li>
+
+                <!-- Create -->
+                <li class="nav-item">
+                  <a href="#" class="nav-item-link">
+                    <span class="material-symbols-outlined nav-item-icon"
+                      >add_circle</span
+                    >
+                    <span class="nav-item-text">Create</span>
+                  </a>
+                </li>
+
+                <!-- Profile -->
+                <li class="nav-item">
+                  <a href="#" class="nav-item-link">
+                    <span class="material-symbols-outlined nav-item-icon"
+                      >account_circle</span
+                    >
+                    <span class="nav-item-text">Profile</span>
+                  </a>
+                </li>
+
+                <!-- More -->
+                <li class="nav-item">
+                  <a href="#" class="nav-item-link">
+                    <span class="material-symbols-outlined nav-item-icon"
+                      >more_horiz</span
+                    >
+                    <span class="nav-item-text">More</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </aside>
+          <main class="main">
+            <div class="main-container">
+              <!-- content-section -->
+              <section class="content-section">
+                <!-- story -->
+                <div class="story">
+                  <a href="#" class="avatar">
+                    <div
+                      class="avatar-img-box avatar-img-box--lg avatar-img-box-wrapper--lg">
+                      <img
+                        src="./img/Avatar.svg"
+                        alt="avatar"
+                        class="avatar-img" />
+                      <img
+                        class="avatar-img-wrapper"
+                        src="./img/Avatar-warepper-colorful.svg"
+                        alt="" />
+                    </div>
+                    <span class="avatar-text">its_theeebest</span>
+                  </a>
+                  <a href="#" class="avatar">
+                    <div
+                      class="avatar-img-box avatar-img-box--lg avatar-img-box-wrapper--lg">
+                      <img
+                        src="./img/Avatar.svg"
+                        alt="avatar"
+                        class="avatar-img" />
+                      <img
+                        class="avatar-img-wrapper"
+                        src="./img/Avatar-warepper-colorful.svg"
+                        alt="" />
+                    </div>
+                    <span class="avatar-text">its_theeebest</span>
+                  </a>
+                  <a href="#" class="avatar">
+                    <div
+                      class="avatar-img-box avatar-img-box--lg avatar-img-box-wrapper--lg">
+                      <img
+                        src="./img/Avatar.svg"
+                        alt="avatar"
+                        class="avatar-img" />
+                      <img
+                        class="avatar-img-wrapper"
+                        src="./img/Avatar-warepper-colorful.svg"
+                        alt="" />
+                    </div>
+                    <span class="avatar-text">its_theeebest</span>
+                  </a>
+                  <a href="#" class="avatar">
+                    <div
+                      class="avatar-img-box avatar-img-box--lg avatar-img-box-wrapper--lg">
+                      <img
+                        src="./img/Avatar.svg"
+                        alt="avatar"
+                        class="avatar-img" />
+                      <img
+                        class="avatar-img-wrapper"
+                        src="./img/Avatar-warepper-colorful.svg"
+                        alt="" />
+                    </div>
+                    <span class="avatar-text">its_theeebest</span>
+                  </a>
+                </div>
+
+                <!-- posts -->
+                <div class="posts" id="posts"></div>
+              </section>
+
+              <!-- follow-section -->
+              <section class="follow-section">
+                <div class="profile">
+                  <a href="#" class="avatar avatar-only">
+                    <div class="avatar-img-box avatar-img-box--md">
+                      <img
+                        src="https://cdn.pixabay.com/photo/2023/06/23/11/23/ai-generated-8083323_1280.jpg"
+                        alt="avatar"
+                        class="avatar-img" />
+                      <img
+                        class="avatar-img-wrapper"
+                        src="./img/Avatar-warepper-colorful.svg"
+                        alt="" />
+                    </div>
+                    <span class="avatar-text">its_theeebest</span>
+                  </a>
+                  <div class="profile-info">
+                    <div class="profile-info-texts">
+                      <a href="" class="profile-link">Username</a>
+                      <span class="profile-name">Name</span>
+                    </div>
+                    <div class="profile-info-label">
+                      <button class="btn btn-blue btn-normal">switch</button>
+                    </div>
+                  </div>
+                </div>
+
+                <section class="suggested">
+                  <div class="suggested-texts">
+                    <span class="suggested-text">Suggested for you</span>
+                    <a href="" class="suggested-link">See all</a>
+                  </div>
+
+                  <div class="suggested-profiles">
+                    <div class="profile profile--sm">
+                      <a href="#" class="avatar avatar-only">
+                        <div class="avatar-img-box avatar-img-box--sm">
+                          <img
+                            src="https://cdn.pixabay.com/photo/2023/06/23/11/23/ai-generated-8083323_1280.jpg"
+                            alt="avatar"
+                            class="avatar-img" />
+                          <img
+                            class="avatar-img-wrapper"
+                            src="./img/Avatar-warepper-colorful.svg"
+                            alt="" />
+                        </div>
+                        <span class="avatar-text">its_theeebest</span>
+                      </a>
+                      <div class="profile-info">
+                        <div class="profile-info-texts">
+                          <a href="" class="profile-link">Username</a>
+                          <span class="profile-name">Name</span>
+                        </div>
+                        <div class="profile-info-label">
+                          <button class="btn btn-blue btn-normal">
+                            switch
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="profile profile--sm">
+                      <a href="#" class="avatar avatar-only">
+                        <div class="avatar-img-box avatar-img-box--sm">
+                          <img
+                            src="https://cdn.pixabay.com/photo/2023/06/23/11/23/ai-generated-8083323_1280.jpg"
+                            alt="avatar"
+                            class="avatar-img" />
+                          <img
+                            class="avatar-img-wrapper"
+                            src="./img/Avatar-warepper-colorful.svg"
+                            alt="" />
+                        </div>
+                        <span class="avatar-text">its_theeebest</span>
+                      </a>
+                      <div class="profile-info">
+                        <div class="profile-info-texts">
+                          <a href="" class="profile-link">Username</a>
+                          <span class="profile-name">Name</span>
+                        </div>
+                        <div class="profile-info-label">
+                          <button class="btn btn-blue btn-normal">
+                            switch
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="profile profile--sm">
+                      <a href="#" class="avatar avatar-only">
+                        <div class="avatar-img-box avatar-img-box--sm">
+                          <img
+                            src="https://cdn.pixabay.com/photo/2023/06/23/11/23/ai-generated-8083323_1280.jpg"
+                            alt="avatar"
+                            class="avatar-img" />
+                          <img
+                            class="avatar-img-wrapper"
+                            src="./img/Avatar-warepper-colorful.svg"
+                            alt="" />
+                        </div>
+                        <span class="avatar-text">its_theeebest</span>
+                      </a>
+                      <div class="profile-info">
+                        <div class="profile-info-texts">
+                          <a href="" class="profile-link">Username</a>
+                          <span class="profile-name">Name</span>
+                        </div>
+                        <div class="profile-info-label">
+                          <button class="btn btn-blue btn-normal">
+                            switch
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="profile profile--sm">
+                      <a href="#" class="avatar avatar-only">
+                        <div class="avatar-img-box avatar-img-box--sm">
+                          <img
+                            src="https://cdn.pixabay.com/photo/2023/06/23/11/23/ai-generated-8083323_1280.jpg"
+                            alt="avatar"
+                            class="avatar-img" />
+                          <img
+                            class="avatar-img-wrapper"
+                            src="./img/Avatar-warepper-colorful.svg"
+                            alt="" />
+                        </div>
+                        <span class="avatar-text">its_theeebest</span>
+                      </a>
+                      <div class="profile-info">
+                        <div class="profile-info-texts">
+                          <a href="" class="profile-link">Username</a>
+                          <span class="profile-name">Name</span>
+                        </div>
+                        <div class="profile-info-label">
+                          <button class="btn btn-blue btn-normal">
+                            switch
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="profile profile--sm">
+                      <a href="#" class="avatar avatar-only">
+                        <div class="avatar-img-box avatar-img-box--sm">
+                          <img
+                            src="https://cdn.pixabay.com/photo/2023/06/23/11/23/ai-generated-8083323_1280.jpg"
+                            alt="avatar"
+                            class="avatar-img" />
+                          <img
+                            class="avatar-img-wrapper"
+                            src="./img/Avatar-warepper-colorful.svg"
+                            alt="" />
+                        </div>
+                        <span class="avatar-text">its_theeebest</span>
+                      </a>
+                      <div class="profile-info">
+                        <div class="profile-info-texts">
+                          <a href="" class="profile-link">Username</a>
+                          <span class="profile-name">Name</span>
+                        </div>
+                        <div class="profile-info-label">
+                          <button class="btn btn-blue btn-normal">
+                            switch
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="profile profile--sm">
+                      <a href="#" class="avatar avatar-only">
+                        <div class="avatar-img-box avatar-img-box--sm">
+                          <img
+                            src="https://cdn.pixabay.com/photo/2023/06/23/11/23/ai-generated-8083323_1280.jpg"
+                            alt="avatar"
+                            class="avatar-img" />
+                          <img
+                            class="avatar-img-wrapper"
+                            src="./img/Avatar-warepper-colorful.svg"
+                            alt="" />
+                        </div>
+                        <span class="avatar-text">its_theeebest</span>
+                      </a>
+                      <div class="profile-info">
+                        <div class="profile-info-texts">
+                          <a href="" class="profile-link">Username</a>
+                          <span class="profile-name">Name</span>
+                        </div>
+                        <div class="profile-info-label">
+                          <button class="btn btn-blue btn-normal">
+                            switch
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <footer class="footer">THIS IS THE FOOTER</footer>
+                </section>
+              </section>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

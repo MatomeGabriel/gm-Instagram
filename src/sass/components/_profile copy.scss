@@ -1,0 +1,45 @@
+@use "../abstracts/mixins" as *;
+@use "../abstracts/variables" as *;
+
+.profile {
+  @include flex-start-center;
+  gap: 1.2rem;
+  width: 28.3rem;
+
+  &-info {
+    @include flex-space-between-center;
+    flex-grow: 1;
+
+    &-label {
+      margin-left: auto;
+    }
+
+    &-texts {
+      @include flex-column;
+      gap: 4px;
+    }
+  }
+
+  &-link {
+    @include generic-link;
+    color: $color-black;
+  }
+
+  &-name {
+    @include sm-normal-text;
+    color: $color-grey;
+  }
+
+  &--sm {
+    padding: 0.8rem 0;
+  }
+  &--sm &-info-texts {
+    gap: 0;
+  }
+  &--sm &-name {
+    font-size: 1.2rem;
+  }
+  &--sm .btn {
+    font-size: 1.2rem;
+  }
+}

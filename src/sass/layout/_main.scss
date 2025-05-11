@@ -1,0 +1,54 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.main {
+  display: flex;
+  justify-content: center;
+
+  height: 100vh;
+  overflow-y: auto;
+  width: $main-width;
+  &-container {
+    display: flex;
+  }
+}
+
+@media (max-width: $max-width-lg) {
+  main {
+    flex-basis: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .main {
+    flex-basis: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .main {
+    padding: 2rem;
+  }
+}
+
+.suggested {
+  margin-top: 2.4rem;
+
+  &-texts {
+    @include flex-space-between-center;
+  }
+  &-link {
+    @include generic-link;
+    font-size: 1.2rem;
+    color: $color-dark;
+  }
+  &-text {
+    @include sm-semibold-text;
+    color: $color-grey;
+  }
+
+  &-profiles {
+    @include flex-column;
+    padding-top: 0.8rem;
+  }
+}
