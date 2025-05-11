@@ -8,7 +8,7 @@ const createProfilePageHeader = (user) => {
   return `<header id="js__profile-page-header" class="profile-page-header">
               <section class="profile-page-avatar-box">
                 <button id="js__profile-page-upload-btn" class="btn btn-profile-page-upload">
-                  <img
+                  <img id="js__profile-page-img"
                     class="profile-page-img"
                     src="${avatar}"
                     alt="${username}" />
@@ -22,7 +22,7 @@ const createProfilePageHeader = (user) => {
               </section>
               <section class="profile-page-user-detail">
                 <span class="profile-page-username">${username}</span>
-                <button class="btn btn-profile-page">Edit profile</button>
+                <button id="js__profile-page-btn-edit-profile" class="btn btn-profile-page">Edit profile</button>
                 <button class="btn btn-profile-page">View archive</button>
                 <button class="btn">Settings</button>
               </section>
@@ -42,7 +42,7 @@ const createProfilePageHeader = (user) => {
               </section>
               <section class="profile-page-name-detail">
                 <div class="profile-page-name">${name}</div>
-                <div class="profile-page-bio">${bio}</div>
+                <div style="white-space: pre-wrap;" id="js__profile-page-bio" class="profile-page-bio">${bio}</div>
               </section>
             </header>`;
 };

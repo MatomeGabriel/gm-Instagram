@@ -19,3 +19,11 @@ export const getUser = () => {
 export const getUserPosts = (id) => {
   return state.posts.filter((post) => post.id === id);
 };
+
+export const getState = () => {
+  return state;
+};
+
+export const getPosts = () => {
+  return state.posts;
+};

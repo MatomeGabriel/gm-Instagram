@@ -6,10 +6,10 @@ import bookmarkedIcon from "../assets/bookmarked.svg";
 
 const $posts = document.getElementById("js__posts");
 
-export const renderPosts = (posts) => {
+export const renderPosts = (posts, $postEL) => {
   posts.forEach((post) => {
     const postNode = createPost(post);
-    $posts?.appendChild(postNode);
+    $postEL?.appendChild(postNode);
   });
 };
 
