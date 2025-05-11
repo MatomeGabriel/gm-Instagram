@@ -1,6 +1,7 @@
 import { getCurrentRoute, navigateTo } from "./routes/routeHandlers";
 import { routes } from "./routes/routes";
 import "./css/styles.css";
+
 import { createLogin } from "./components/login/createLogin.js";
 import { getCurrentUser, register } from "./helpers/auth.js";
 import { auth } from "./firebase/config.js";
@@ -12,7 +13,17 @@ import {
 } from "./components/main-container/createMainContainer.js";
 import state from "./state/state.js";
 import { createSignup } from "./components/login/createSignup.js";
+import { createProfilePage } from "./components/createProfilePage.js";
 
+const isProfileRoute = (path) => {
+  return path.startsWith("/profile-");
+};
+
+const getProfiledId = (path) => {
+  if (!path.startsWith("/profile-")) return null;
+
+  return path.split("-")[1];
+};
 const originalPushState = history.pushState;
 history.pushState = function (state, title, url) {
   // we call the history.push with everything
@@ -46,14 +57,17 @@ const checkIsUserLoggedIn = () => {
     if (currentUser) {
       try {
         const userData = await getCurrentUser(currentUser);
+        console.log(userData);
         console.log("User Got", userData);
         setUser({ ...userData });
 
         switch (route) {
           case routes.login:
-            navigateTo("/home");
+            navigateTo(routes.home);
             break;
-
+          case routes.signup:
+            navigateTo(routes.home);
+            break;
           default:
             app();
             break;
@@ -63,7 +77,7 @@ const checkIsUserLoggedIn = () => {
       }
     } else {
       console.log("user Does Not exists");
-      navigateTo(routes.login);
+      navigateTo(routes.signup);
     }
   });
 };
@@ -79,6 +93,14 @@ const renderLogin = () => {
 const renderSignup = () => {
   const $container = document.getElementById("js__container");
   $container.appendChild(createSignup());
+};
+
+const renderProfilePage = () => {
+  document
+    .getElementById("js__main")
+    .appendChild(
+      createProfilePage(getUser(), getProfiledId(getCurrentRoute()))
+    );
 };
 
 const addLoginEventListener = () => {
@@ -123,7 +145,25 @@ const addSignupEventListeners = () => {
     });
 };
 
-const setUpProfile = () => {};
+const addProfilePageEventListeners = () => {
+  document
+    .getElementById("js__profile-page-upload-btn")
+    .addEventListener("click", () => {
+      document.getElementById("js__file-input-upload").click();
+      console.log("Click");
+    });
+  document
+    .getElementById("js__file-input-upload")
+    .addEventListener("change", (e) => {
+      const file = e.target.files[0];
+    });
+};
+
+const setProfilePage = () => {
+  cleanup();
+  renderProfilePage();
+  addProfilePageEventListeners();
+};
 const setLogin = () => {
   cleanup();
   renderLogin();
@@ -163,20 +203,27 @@ const setHome = () => {
 const setSignup = () => {
   cleanup();
   renderSignup();
-  // addSignupEventListeners();
+  addSignupEventListeners();
 };
 
 const app = () => {
   const route = getCurrentRoute();
-  switch (route) {
-    case routes.home:
+  switch (true) {
+    case route === routes.home:
       setHome();
       setFollow();
       break;
-    case routes.login:
+    case isProfileRoute(getCurrentRoute()):
+      setProfilePage();
+      break;
+    case route === routes.root:
+      setHome();
+      setFollow();
+      break;
+    case route === routes.login:
       setLogin();
       break;
-    case routes.signup:
+    case route === routes.signup:
       setSignup();
       break;
   }

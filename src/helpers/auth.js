@@ -1,5 +1,6 @@
 import { auth } from "../firebase/config";
 import { db } from "../firebase/config";
+import avatarImg from "../assets/avatar.svg";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -10,43 +11,77 @@ import { setUser } from "../state/manageState";
 import { setDoc, doc, getDoc } from "firebase/firestore";
 import state from "../state/state";
 
-const generateUsername = (email) => {
-  const prefix = email.split("@")[0];
+const generateUsername = (email, username) => {
+  const prefix = username ? username : email.split("@")[0];
   const randNum = Math.floor(Math.random() * 1000);
 
   return `${prefix}_${randNum}`;
 };
 
-const createUserObj = (uid, username, name, email) => {
+const createUserObj = (uid, username, displayName = "", email, isVerified) => {
   return {
     id: uid,
     username: username,
-    name: name,
+    name: displayName,
     bio: "Write something cool about yourself!",
-    avatar: `https://i.pravatar.cc/150?u=${uid}`, // Dynamic avatar URL
+    avatar: `${avatarImg}`,
     followers: [],
     following: [],
     bookmarks: [],
+    isVerified: isVerified,
     email: email,
   };
 };
+
+const randomVerified = () => {
+  return Math.random < 0.5;
+};
+
 // 1. Register Users
 // Working
 export const register = async (email, password, name, username) => {
   try {
+    console.log("Registering a User");
+    console.log("------------------------------");
+
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
       password
     );
 
-    const serializedUsername = username.trim();
     const user = userCredential.user;
-    const username = generateUsername(email);
+    const usernameGenerated = generateUsername(email, username.trim());
     const uid = user.uid;
+    const displayName = name.trim();
+    const isVerified = randomVerified();
 
-    const userObject = createUserObj(uid, username, name, email);
+    //
+    console.log("User Exist", user);
+    console.log("------------------------------");
+
+    //
+
+    if (displayName) {
+      await updateProfile(user, { displayName: displayName });
+
+      //
+      console.log("Display Name");
+      console.log("------------------------------");
+
+      //
+    }
+    const userObject = createUserObj(
+      uid,
+      usernameGenerated,
+      displayName,
+      email,
+      isVerified
+    );
+    //
     console.log("user Object", userObject);
+
+    //
 
     await setDoc(doc(db, "users", uid), userObject);
 
@@ -55,8 +90,6 @@ export const register = async (email, password, name, username) => {
   } catch (error) {
     console.log(error);
   }
-
-  //   await updateProfile(userCredential.user, { displayName: name });
 };
 
 // 2. Login Users

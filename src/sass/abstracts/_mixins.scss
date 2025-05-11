@@ -1,12 +1,12 @@
 @use "../abstracts/variables" as *;
 @mixin setWidthAndHeight($size) {
-  width: $size;
-  height: $size;
+  width: $size !important;
+  height: $size !important;
 }
 
 @mixin set-width-height($size) {
-  width: $size;
-  height: $size;
+  width: $size !important;
+  height: $size !important;
 }
 
 @mixin flex-center-all {

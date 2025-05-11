@@ -15,3 +15,7 @@ export const setUser = (user) => {
 export const getUser = () => {
   return state.currentUser;
 };
+
+export const getUserPosts = (id) => {
+  return state.posts.filter((post) => post.id === id);
+};
