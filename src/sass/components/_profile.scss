@@ -64,6 +64,9 @@ $avatar-sizes: (
   &-datetime {
     display: none;
   }
+  &-page-img {
+    border-radius: 100px;
+  }
 }
 
 .post {
@@ -114,4 +117,20 @@ $avatar-sizes: (
   .profile-label {
     font-size: 1.2rem;
   }
+}
+
+.btn-profile-page-upload:disabled {
+  background-color: transparent;
+}
+.btn-profile-page-upload:disabled:hover {
+  background-color: transparent;
+  opacity: 0.9;
+}
+
+.profile-page-hover-icon {
+  display: none;
+}
+
+.btn-profile-page-upload:hover .profile-page-hover-icon {
+  display: flex !important;
 }

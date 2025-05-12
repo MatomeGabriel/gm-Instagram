@@ -12,6 +12,7 @@ export const createPostInteractions = (postState) => {
   const isBookmarkedImg = isCurrentPostBookmarked
     ? bookmarkedIcon
     : bookmarkIcon;
+
   return `<section class="post-interactions">
     <div class="post-interact">
       <button class="btn btn-like">

@@ -3,6 +3,13 @@ import likeIcon from "../assets/like.svg";
 import likedIcon from "../assets/liked.svg";
 import bookmarkIcon from "../assets/bookmark.svg";
 import bookmarkedIcon from "../assets/bookmarked.svg";
+import {
+  updateBookmarks,
+  updateBookMarks,
+  updatePostLikes,
+} from "../state/manageState";
+import { updateArrayData, updateUserLike } from "./user";
+import { auth } from "../firebase/config";
 
 const $posts = document.getElementById("js__posts");
 
@@ -27,12 +34,19 @@ const findUser = (state, id) => {
 
 const addFollow = (state, data) => {
   const { postId } = data;
-  // using the following
+  // current user following
   const { following } = state.currentUser;
-  const { userId } = findPost(state, data.postId);
-  const isFollowing = following.includes(userId);
-  const foundPosts = findPosts(state, userId);
 
+  // the user who this post belongs to
+  const { userId } = findPost(state, data.postId);
+
+  // check if the current users has the userId in its followers
+  const isFollowing = following.includes(userId);
+  const { followers } = state.users.find((user) => user.id === userId);
+  console.log(followers);
+  //
+  const foundPosts = findPosts(state, userId);
+  // const postuder =
   // seclect all element with the user of the following and  remove t
   if (!isFollowing) {
     foundPosts.forEach((foundPost) => {
@@ -42,28 +56,60 @@ const addFollow = (state, data) => {
       document.querySelector(`.js__post-follow-dot-${foundPost.id}`).remove();
     });
     following.push(userId);
+    followers.push(auth.currentUser.uid);
   }
-  console.log(following);
+
+  const obj1 = {
+    docId: auth.currentUser.uid,
+    docData: { following: following },
+    docProperty: "following",
+    collection: "users",
+  };
+  // the following
+  updateArrayData(obj1, () => {
+    return;
+  });
+
+  const obj2 = {
+    docId: userId,
+    docData: { followers: followers },
+    docProperty: "follower",
+    collection: "users",
+  };
+  // follower
+  updateArrayData(obj2, () => {
+    return;
+  });
 };
 
-const toggleState = (state, arr, img, iconNormal, iconClicked) => {
+const toggleState = (state, arr, img, iconNormal, iconClicked, data) => {
   const { currentUser } = state;
   const isTrue = arr.includes(currentUser.id);
 
   if (isTrue) {
     const index = arr.indexOf(currentUser.id);
     arr.splice(index, 1);
+
     img.src = iconNormal;
   } else {
     arr.push(currentUser.id);
     img.src = iconClicked;
   }
+
+  const obj = {
+    docId: data.postId,
+    docData: { likes: arr },
+    docProperty: "likes",
+    collection: "posts",
+  };
+
+  updateArrayData(obj, updatePostLikes);
 };
 
 const handleLike = (state, data) => {
   const img = data.btn.querySelector("img");
   const { likes } = findPost(state, data.postId);
-  toggleState(state, likes, img, likeIcon, likedIcon);
+  toggleState(state, likes, img, likeIcon, likedIcon, data);
 };
 
 const handleBookmark = (state, data) => {
@@ -81,7 +127,14 @@ const handleBookmark = (state, data) => {
     bookmarks.push(postId);
     img.src = bookmarkedIcon;
   }
-  console.log(state.currentUser);
+
+  const obj = {
+    docId: auth.currentUser.uid,
+    docData: { bookmarks: bookmarks },
+    docProperty: "bookmarks",
+    collection: "users",
+  };
+  updateArrayData(obj, updateBookmarks);
 };
 
 export const addPostEventListener = (state) => {

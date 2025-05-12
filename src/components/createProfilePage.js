@@ -1,28 +1,45 @@
 import convertHTMLToDOMNode from "../helpers/convertHtmlToDomNode";
-import { getUserPosts } from "../state/manageState";
+import {
+  getPostsByUserId,
+  getUserById,
+  getUserPosts,
+} from "../state/manageState";
+import cameraIcon from "../assets/camera.svg";
+import { auth } from "../firebase/config";
 
-import cameraImg from "../assets/camera.svg";
-const createProfilePageHeader = (user) => {
+const createProfilePageHeader = (userId) => {
+  const user = getUserById(userId);
+  const currentUseId = auth.currentUser.uid;
   const { id, avatar, username, followers, following, name, bio } = user;
-  const posts = getUserPosts(id);
+
+  const showUpdateProfile = currentUseId === userId ? "" : "disabled";
+  const showEditProfile = currentUseId === userId ? "" : "disabled";
+  const inputUploadFile =
+    currentUseId === userId
+      ? `<input type="file" id="js__file-input-upload" accept="image/*" style="display: none;">`
+      : "";
+  const cameraImg =
+    currentUseId === userId
+      ? `<img src="${cameraIcon}"
+                    alt=""
+                    class="profile-page-hover-icon" />`
+      : "";
+  const posts = getPostsByUserId(id);
   return `<header id="js__profile-page-header" class="profile-page-header">
               <section class="profile-page-avatar-box">
-                <button id="js__profile-page-upload-btn" class="btn btn-profile-page-upload">
+                <button ${showUpdateProfile} id="js__profile-page-upload-btn" class="btn btn-profile-page-upload">
                   <img id="js__profile-page-img"
                     class="profile-page-img"
                     src="${avatar}"
                     alt="${username}" />
 
-                  <img
-                    src="${cameraImg}"
-                    alt=""
-                    class="profile-page-hover-icon" />
+                  ${cameraImg}
                 </button>
-                <input type="file" id="js__file-input-upload" accept="image/*" style="display: none;">
+                ${inputUploadFile}
               </section>
               <section class="profile-page-user-detail">
                 <span class="profile-page-username">${username}</span>
-                <button id="js__profile-page-btn-edit-profile" class="btn btn-profile-page">Edit profile</button>
+                <button ${showEditProfile} id="js__profile-page-btn-edit-profile" class="btn btn-profile-page">Edit profile</button>
                 <button class="btn btn-profile-page">View archive</button>
                 <button class="btn">Settings</button>
               </section>

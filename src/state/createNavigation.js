@@ -75,7 +75,7 @@ export const createNavigation = () => {
 
                 <!-- Create -->
                 <li class="nav-item">
-                  <btn id="js__add-post-btn" class="nav-item-link">
+                  <btn id="js__add-post-btn" class="nav-item-link btn">
                     <span class="material-symbols-outlined nav-item-icon"
                       >add_circle</span
                     >

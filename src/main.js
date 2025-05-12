@@ -14,14 +14,28 @@ import {
 import state from "./state/state.js";
 import { createSignup } from "./components/login/createSignup.js";
 import { createProfilePage } from "./components/createProfilePage.js";
-import { updateProfileBio, updateUserAvatar } from "./helpers/user.js";
+import {
+  createPost,
+  getAllPosts,
+  getAllUsers,
+  updateProfileBio,
+  updateUserAvatar,
+} from "./helpers/user.js";
 import { createOverlay } from "./components/createOverlay.js";
 import { createProfilePageModal } from "./components/createProfilePageModal.js";
 import { updateProfile } from "firebase/auth";
 import { createNavigation } from "./state/createNavigation.js";
+import { createAddPostModal } from "./components/createAddPostModal.js";
 
+const fileArr = [];
 const isProfileRoute = (path) => {
   return path.startsWith("/profile-");
+};
+
+const showLoader = () => {
+  document.getElementById(
+    "js__container"
+  ).innerHTML = `<span class="loader"></span>`;
 };
 
 const getProfiledId = (path) => {
@@ -38,7 +52,7 @@ history.pushState = function (state, title, url) {
 };
 window.addEventListener("urlChange", () => {
   // Your function logic here
-  const route = getCurrentRoute();
+  showLoader();
   setTimeout(() => {
     app();
   }, 500);
@@ -78,13 +92,20 @@ const cleanup = () => {
 };
 
 const checkIsUserLoggedIn = () => {
+  showLoader();
   auth.onAuthStateChanged(async (currentUser) => {
     const route = getCurrentRoute();
+    // 1. if user is logged in
+    // 2. get all the posts and set them to the state
     if (currentUser) {
       try {
         const userData = await getCurrentUser(currentUser);
         setUser({ ...userData });
+        const users = await getAllUsers();
+        const posts = await getAllPosts();
 
+        console.log("User", users);
+        console.log("Posts", posts);
         switch (route) {
           case routes.login:
             navigateTo(routes.home);
@@ -129,9 +150,7 @@ const renderSignup = () => {
 const renderProfilePage = () => {
   document
     .getElementById("js__main")
-    .appendChild(
-      createProfilePage(getUser(), getProfiledId(getCurrentRoute()))
-    );
+    .appendChild(createProfilePage(getProfiledId(getCurrentRoute())));
 
   document.getElementById("js__root").appendChild(createOverlay());
   console.log(createOverlay());
@@ -208,6 +227,7 @@ const addProfilePageEventListeners = () => {
   document.getElementById("js__overlay").addEventListener("click", (e) => {
     e.target.style.display = "none";
     document.getElementById("js__profile-page-modal").style.display = "none";
+    document.getElementById("js__add-post-modal").style.display = "none";
   });
 
   document
@@ -228,7 +248,45 @@ const addProfilePageEventListeners = () => {
     });
 };
 
-const addNavEventListeners = () => {};
+const addNavEventListeners = () => {
+  document.getElementById("js__add-post-btn").addEventListener("click", (e) => {
+    document.getElementById("js__add-post-modal").style.display = "flex";
+    document.getElementById("js__overlay").style.display = "flex";
+  });
+
+  document
+    .getElementById("js__add-post-img-btn")
+    .addEventListener("click", () => {
+      document.getElementById("js__add-file-img-input-upload").click();
+    });
+
+  document
+    .getElementById("js__add-file-img-input-upload")
+    .addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      fileArr.push(file);
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const imgElement = document.getElementById("js__add-post-modal-img");
+        imgElement.src = e.target.result;
+      };
+      reader.readAsDataURL(file); // Convert file to Data URL
+    });
+
+  document
+    .getElementById("js__upload-post-img-btn")
+    .addEventListener("click", async (e) => {
+      const file = fileArr.pop();
+
+      if (!file) return;
+      try {
+        createPost(file);
+      } catch (error) {
+        console.log(error);
+      }
+    });
+};
 
 const setProfilePage = () => {
   cleanup();
@@ -244,6 +302,9 @@ const setLogin = () => {
 
 const setNav = () => {
   renderNav();
+  document.getElementById("js__root").appendChild(createAddPostModal());
+  document.getElementById("js__root").appendChild(createOverlay());
+  addNavEventListeners();
 };
 
 const setPost = async () => {
@@ -313,4 +374,4 @@ const app = () => {
   }
 };
 
-document.addEventListener("DOMContentLoaded", () => {});
+// document.addEventListener("DOMContentLoaded", () => {});
