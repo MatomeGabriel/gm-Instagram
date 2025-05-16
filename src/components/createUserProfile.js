@@ -12,6 +12,7 @@ export const createUserProfile = (user) => {
     avatarSize,
     isVerified,
     curUser,
+    diffId,
   } = user;
 
   const btnLabel = curUser ? "Switch" : "Follow";
@@ -24,7 +25,9 @@ export const createUserProfile = (user) => {
 
   const href = `profile-${id}`;
   const verified = isVerified ? `<img src="${verifiedImg}" alt="" />` : "";
-  const profileHtm = `<div id="js__profile" data-use-id="${id}" class="profile">
+  const profileHtm = `<div id="js__profile${
+    diffId ? `-${id}` : ``
+  }" data-use-id="${id}" class="profile">
             <div  class="profile-details">
               <a href="${href}" class="profile-avatar-container ${avatarSize}">
                 <img
@@ -46,7 +49,7 @@ export const createUserProfile = (user) => {
             </div>
             <div class="profile-dot">&middot;</div>
             <div class="profile-label-container">
-              <button data-can-follow="${btnLabel}" class="btn btn-blue profile-label">${btnLabel}</button>
+              <button id="js__follow-${id}" data-user-id="${id}" data-can-follow="${btnLabel}" class="btn btn-blue profile-label">${btnLabel}</button>
             </div>
           </div>`;
 

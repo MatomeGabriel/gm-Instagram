@@ -9,7 +9,6 @@ import {
 } from "firebase/auth";
 import { setUser } from "../state/manageState";
 import { setDoc, doc, getDoc } from "firebase/firestore";
-import state from "../state/state";
 
 const generateUsername = (email, username) => {
   const prefix = username ? username : email.split("@")[0];
@@ -41,9 +40,6 @@ const randomVerified = () => {
 // Working
 export const register = async (email, password, name, username) => {
   try {
-    console.log("Registering a User");
-    console.log("------------------------------");
-
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
@@ -56,20 +52,8 @@ export const register = async (email, password, name, username) => {
     const displayName = name.trim();
     const isVerified = randomVerified();
 
-    //
-    console.log("User Exist", user);
-    console.log("------------------------------");
-
-    //
-
     if (displayName) {
       await updateProfile(user, { displayName: displayName });
-
-      //
-      console.log("Display Name");
-      console.log("------------------------------");
-
-      //
     }
     const userObject = createUserObj(
       uid,
@@ -78,17 +62,12 @@ export const register = async (email, password, name, username) => {
       email,
       isVerified
     );
-    //
-    console.log("user Object", userObject);
-
-    //
 
     await setDoc(doc(db, "users", uid), userObject);
-
     setUser(userObject);
-    console.log(state.currentUser);
+    alert("Registration successful! 🎉");
   } catch (error) {
-    console.log(error);
+    alert("Failed to register ⛔" + error);
   }
 };
 
@@ -96,8 +75,13 @@ export const register = async (email, password, name, username) => {
 
 export const login = async (email, password) => {
   try {
-    await signInWithEmailAndPassword(auth, email, password);
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
   } catch (error) {
+    alert(`Failed to login ${error}`);
     console.log(error);
   }
 };

@@ -23,7 +23,7 @@ export const createSignup = () => {
 
         <form id="js__login-form" action="" class="login-form">
           <div class="login-form-input-group">
-            <input autocomplete="email" required id="js__input-email" type="email" placeholder="Email" />
+            <input name="email" autocomplete="email" required id="js__input-email" type="email" placeholder="Email" />
             <input required autocomplete="current-password"
               id="js__input-password"
               type="password"
@@ -41,7 +41,7 @@ export const createSignup = () => {
               <a href="#">Terms</a>, <a href="#">Privacy Policy</a> and
               <a href="#">Cookies Policy</a>.
             </p>
-            <button id="js__signup-btn" class="btn btn-full login-btn">Sign up</button>
+            <button type="submit" id="js__signup-btn" class="btn btn-full login-btn">Sign up</button>
           </footer>
         </form>
       </div>

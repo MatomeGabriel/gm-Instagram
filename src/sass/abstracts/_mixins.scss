@@ -101,3 +101,8 @@
     @content;
   }
 }
+@mixin respond-to-medium-screens {
+  @media (max-width: 768px) {
+    @content;
+  }
+}

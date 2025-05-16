@@ -134,3 +134,58 @@ $avatar-sizes: (
 .btn-profile-page-upload:hover .profile-page-hover-icon {
   display: flex !important;
 }
+
+@include respond-to-medium-screens {
+  .main {
+    padding: 2rem;
+  }
+  .profile-page {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .profile-page-user-detail {
+    align-items: start;
+    gap: 1.6rem;
+    flex-direction: column;
+  }
+
+  .profile-page-name-detail {
+    grid-column: 1/-1;
+    grid-row: 5;
+    margin-bottom: 10rem;
+  }
+  .profile-page-img {
+    @include set-width-height(8rem);
+  }
+  .profile-page-avatar-box {
+    margin-right: 1.6rem;
+  }
+  .profile-page-stats-detail {
+    display: none;
+  }
+
+  .add-post-modal {
+    overflow: hidden;
+    width: 80% !important;
+    height: 80% !important;
+    flex-direction: column !important;
+  }
+  .add-post-modal-img-box {
+    width: 100% !important;
+    height: 50% !important;
+  }
+
+  .add-post-modal-text-box {
+    width: 100% !important;
+    height: auto !important;
+  }
+  .add-post-modal-img {
+    scale: 1.03;
+  }
+}
+.suggested {
+  width: 100%;
+  &-profiles .profile {
+    padding: 8px 0;
+  }
+}

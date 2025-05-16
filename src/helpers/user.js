@@ -12,11 +12,13 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import {
+  getPosts,
   setPosts,
   setUser,
   setUsers,
   updatePostLikes,
 } from "../state/manageState";
+import state from "../state/state";
 
 export const updateUserAvatar = async (file) => {
   const user = auth.currentUser;
@@ -120,8 +122,11 @@ export const createPost = async (file) => {
     alert("Post Has Successfully Uploaded");
     const posts = await getAllPosts();
     setPosts(posts);
+
     document.getElementById("js__overlay").style.display = "none";
     document.getElementById("js__add-post-modal").style.display = "none";
+    document.getElementById("js__add-post-modal-textarea").value = "";
+    return state.posts.filter((post) => post.id === postId);
   } catch (error) {
     console.log(error);
   }

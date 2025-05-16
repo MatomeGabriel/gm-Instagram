@@ -7,6 +7,14 @@ import {
 import cameraIcon from "../assets/camera.svg";
 import { auth } from "../firebase/config";
 
+import gridIcon from "../assets/Grid.svg";
+import bookmarkIcon from "../assets/bookmark.svg";
+import tagIcon from "../assets/Tag.svg";
+import chatIcon from "../assets/chatFilled.svg";
+import likeIcon from "../assets/likeFilled.svg";
+import state from "../state/state";
+import { findPosts } from "../helpers/post";
+
 const createProfilePageHeader = (userId) => {
   const user = getUserById(userId);
   const currentUseId = auth.currentUser.uid;
@@ -14,6 +22,10 @@ const createProfilePageHeader = (userId) => {
 
   const showUpdateProfile = currentUseId === userId ? "" : "disabled";
   const showEditProfile = currentUseId === userId ? "" : "disabled";
+  const logoutBtn =
+    currentUseId === userId
+      ? `<button id="js__profile-page-logout-btn" class="btn btn-profile-page">Logout</button>`
+      : "";
   const inputUploadFile =
     currentUseId === userId
       ? `<input type="file" id="js__file-input-upload" accept="image/*" style="display: none;">`
@@ -39,9 +51,16 @@ const createProfilePageHeader = (userId) => {
               </section>
               <section class="profile-page-user-detail">
                 <span class="profile-page-username">${username}</span>
+                <div class="profile-page-user-detail-btn">
                 <button ${showEditProfile} id="js__profile-page-btn-edit-profile" class="btn btn-profile-page">Edit profile</button>
-                <button class="btn btn-profile-page">View archive</button>
-                <button class="btn">Settings</button>
+                ${logoutBtn}
+                <button class="btn">
+                <span class="material-symbols-outlined">
+                    settings
+                    </span>
+                </button>
+                </div>
+                
               </section>
               <section class="profile-page-stats-detail">
                 <div class="profile-page-stat">
@@ -64,59 +83,68 @@ const createProfilePageHeader = (userId) => {
             </header>`;
 };
 
-const createProfilePagePostRow = () => {
-  return ` <div class="profile-page-posts-row"><div>`;
-};
-const createProfilePost = () => {
-  return `<button id="js__profile-page-post-btn" class="btn profile-page-post-btn rel">
-                  <img
-                    class="profile-page-post-img"
-                    src="https://images.unsplash.com/photo-1564410267841-915d8e4d71ea?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="" />
+const createProfilePageBtn = (post) => {
+  const { image, caption, comments, likes } = post;
+  return `<button class="btn profile-page-post-btn rel">
+            <img
+              class="profile-page-post-img"
+              src="${image}"
+              alt="" />
 
-                  <div class="abs-center">
-                    <div class="stats">
-                      <div class="stat">
-                        <img
-                          src="/public/img/camera.svg"
-                          alt=""
-                          class="post-stat-img" />
-                        <span class="post-stat-text">10</span>
-                      </div>
-                      <div class="stat">
-                        <img
-                          src="/public/img/camera.svg"
-                          alt=""
-                          class="post-stat-img" />
-                        <span class="post-stat-text">10</span>
-                      </div>
-                    </div>
-                  </div>
-                </button>`;
+            <div class="abs-center">
+              <div class="stats">
+                <div class="stat">
+                  <img
+                    src="${chatIcon}"
+                    alt=""
+                    class="post-stat-img" />
+                  <span class="post-stat-text">${comments.length}</span>
+                </div>
+                <div class="stat">
+                  <img
+                    src="${likeIcon}"
+                    alt=""
+                    class="post-stat-img" />
+                  <span class="post-stat-text">${likes.length}</span>
+                </div>
+              </div>
+            </div>
+          </button>`;
 };
-const createProfilePagePosts = () => {
-  const profilePostRow = createProfilePagePostRow();
-  return `<div class="profile-page-posts"></div>`;
+const createProfilePagePostRow = (userPosts) => {
+  const appendedProfilePost = userPosts?.reduce(
+    (acc, post) => acc + "" + createProfilePageBtn(post),
+    ""
+  );
+  return appendedProfilePost;
+};
+
+const createProfilePagePosts = (userPosts) => {
+  const profilePostRow = createProfilePagePostRow(userPosts);
+  return `<div class="profile-page-posts"><div class="profile-page-posts-row">${profilePostRow}<div></div>`;
 };
 
 const createProfilePageTabs = () => {
   return `<div class="profile-page-tabs">
               <button class="btn profile-page-tab-btn active">
-                <img src="/public/img/Grid.svg" alt="" />
+                <img src="${gridIcon}" alt="" />
                 <span>Posts</span>
               </button>
               <button class="btn profile-page-tab-btn">
-                <img src="/public/img/bookmark.svg" alt="" />
+                <img src="${bookmarkIcon}" alt="" />
                 <span>Saved</span>
               </button>
               <button class="btn profile-page-tab-btn">
-                <img src="/public/img/Tag.svg" alt="" />
+                <img src="${tagIcon}" alt="" />
                 <span>Tagged</span>
               </button>
             </div>`;
 };
-export const createProfilePage = (user, urlUserId) => {
-  console.log(user.id === urlUserId);
+export const createProfilePage = (userId, urlUserId) => {
+  // console.log(user.id === urlUserId);
+  const userPosts = getPostsByUserId(userId);
+  // console.log(user);
+  console.log(userPosts);
   //    {
   //     id: uid,
   //     username: username,
@@ -130,15 +158,15 @@ export const createProfilePage = (user, urlUserId) => {
   //     email: email,
   //   };
   //   1. see if the current user has a right to chnage things
-  const { avatar, bio, id, username, name, isVerified } = user;
-  const profileHeader = createProfilePageHeader(user);
+  // const { avatar, bio, id, username, name, isVerified } = user;
+  const profileHeader = createProfilePageHeader(userId);
   const profileTabs = createProfilePageTabs();
-
-  const profilePosts = createProfilePagePosts();
+  const profilePosts = createProfilePagePosts(userPosts);
 
   const profilePageHtml = ` <div class="profile-page">
             ${profileHeader}
             ${profileTabs}
+            ${profilePosts}
           </div>`;
 
   const profilePageNode = convertHTMLToDOMNode(profilePageHtml);

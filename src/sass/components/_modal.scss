@@ -32,6 +32,7 @@
 }
 
 .add-post-modal {
+  border-radius: 8px;
   position: absolute;
   width: 60vw;
   height: 70vh;
@@ -100,6 +101,7 @@
     justify-content: space-between;
   }
 }
+
 .modal-profile-page {
   display: none;
   h3 {
@@ -180,5 +182,17 @@
   &:hover,
   &:active {
     background-color: $color-grey-light-0 !important;
+  }
+}
+
+@include respond-to-small-screens {
+  .modal-profile-page {
+    width: 80%;
+    padding: 2rem;
+  }
+
+  .btn-absolute {
+    top: -7%;
+    right: -4%;
   }
 }

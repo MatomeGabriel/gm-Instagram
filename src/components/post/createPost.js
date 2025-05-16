@@ -30,11 +30,9 @@ const createPost = (postData) => {
   // const iscurrentuserFollowing
   const isCurrentUserFollowing =
     followers.includes(currentUser.id) &&
-    currentUser.following.includes(userId);
-
-  console.log(isCurrentUserFollowing);
+    currentUser.following?.includes(userId);
   const isCurrentPostLiked = likes.includes(currentUser.id);
-  const isCurrentPostBookmarked = currentUser.bookmarks.includes(postData.id);
+  const isCurrentPostBookmarked = currentUser.bookmarks?.includes(postData.id);
 
   const postState = {
     postData,

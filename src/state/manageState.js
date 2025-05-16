@@ -20,6 +20,10 @@ export const getPostsByUserId = (id) => {
   return state.posts.filter((post) => post.userId === id);
 };
 
+export const getPostByUserId = (id) => {
+  return state.posts.find((post) => post.userId === id);
+};
+
 export const getState = () => {
   return state;
 };

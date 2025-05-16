@@ -7,7 +7,7 @@ export const createPostLikes = (postState) => {
   let postLikes =
     likes.length < 10
       ? `<p class="sm-normal-text">
-              Liked by <a href="#" class="generic-link" href="">${likedBy?.username}</a> and
+              Liked by <a href="/profile-${likedBy?.id}" class="generic-link" href="">${likedBy?.username}</a> and
               <button class="btn btn--semibold">others</button>
             </p>`
       : `<button class="btn btn--semibold">${likes.length} likes</button>`;

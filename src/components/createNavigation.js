@@ -1,6 +1,9 @@
 import convertHTMLToDOMNode from "../helpers/convertHtmlToDomNode";
 import { auth } from "../firebase/config";
+import { getUserById } from "../state/manageState";
+
 export const createNavigation = () => {
+  const { avatar } = getUserById(auth.currentUser.uid);
   const nav = `<nav class="nav">
               <div class="nav-logo">
                 <a data-link href="/home" class="nav-logo-link">
@@ -24,7 +27,7 @@ export const createNavigation = () => {
                 </li>
 
                 <!-- Search -->
-                <li class="nav-item">
+                <li class="nav-item hidden">
                   <a data-link href="/home" class="nav-item-link">
                     <span class="material-symbols-outlined nav-item-icon"
                       >search</span
@@ -54,7 +57,7 @@ export const createNavigation = () => {
                 </li>
 
                 <!-- Messages -->
-                <li class="nav-item">
+                <li class="nav-item hidden">
                   <a data-link href="/profile-${auth.currentUser.uid}" class="nav-item-link">
                     <span class="material-symbols-outlined nav-item-icon"
                       >chat</span
@@ -64,7 +67,7 @@ export const createNavigation = () => {
                 </li>
 
                 <!-- Notifications -->
-                <li class="nav-item">
+                <li class="nav-item hidden">
                   <a data-link href="/profile-${auth.currentUser.uid}" class="nav-item-link">
                     <span class="material-symbols-outlined nav-item-icon"
                       >notifications</span
@@ -86,15 +89,14 @@ export const createNavigation = () => {
                 <!-- Profile -->
                 <li class="nav-item">
                   <a data-link href="/profile-${auth.currentUser.uid}" class="nav-item-link">
-                    <span class="material-symbols-outlined nav-item-icon"
-                      >account_circle</span
-                    >
+                  <img class="nav-item-profile-img" src="${avatar}"/>
+                    
                     <span class="nav-item-text">Profile</span>
                   </a>
                 </li>
 
                 <!-- More -->
-                <li class="nav-item">
+                <li class="nav-item hidden">
                   <a data-link href="/home" class="nav-item-link">
                     <span class="material-symbols-outlined nav-item-icon"
                       >more_horiz</span

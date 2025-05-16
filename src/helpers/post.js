@@ -11,13 +11,17 @@ import {
 import { updateArrayData, updateUserLike } from "./user";
 import { auth } from "../firebase/config";
 
-const $posts = document.getElementById("js__posts");
-
 export const renderPosts = (posts, $postEL) => {
+  console.log(posts, $postEL);
   posts.forEach((post) => {
     const postNode = createPost(post);
     $postEL?.appendChild(postNode);
   });
+};
+
+export const renderPost = (post, $postEL) => {
+  const postNode = createPost(post);
+  $postEL?.appendChild(postNode);
 };
 
 export const findPost = (state, id) => {
@@ -32,7 +36,7 @@ const findUser = (state, id) => {
   return state.users.find((user) => user.id === id);
 };
 
-const addFollow = (state, data) => {
+export const addFollow = (state, data) => {
   const { postId } = data;
   // current user following
   const { following } = state.currentUser;
@@ -43,10 +47,9 @@ const addFollow = (state, data) => {
   // check if the current users has the userId in its followers
   const isFollowing = following.includes(userId);
   const { followers } = state.users.find((user) => user.id === userId);
-  console.log(followers);
   //
   const foundPosts = findPosts(state, userId);
-  // const postuder =
+  // const postuser =
   // seclect all element with the user of the following and  remove t
   if (!isFollowing) {
     foundPosts.forEach((foundPost) => {
@@ -54,6 +57,50 @@ const addFollow = (state, data) => {
         .querySelector(`.js__post-follow-container-${foundPost.id}`)
         .remove();
       document.querySelector(`.js__post-follow-dot-${foundPost.id}`).remove();
+    });
+    following.push(userId);
+    followers.push(auth.currentUser.uid);
+  }
+
+  const obj1 = {
+    docId: auth.currentUser.uid,
+    docData: { following: following },
+    docProperty: "following",
+    collection: "users",
+  };
+  // the following
+  updateArrayData(obj1, () => {
+    return;
+  });
+
+  const obj2 = {
+    docId: userId,
+    docData: { followers: followers },
+    docProperty: "follower",
+    collection: "users",
+  };
+  // follower
+  updateArrayData(obj2, () => {
+    return;
+  });
+};
+
+export const addSuggestedFollow = (state, userId) => {
+  const { following } = state.currentUser;
+
+  // check if the current users has the userId in its followers
+  const isFollowing = following.includes(userId);
+  const { followers } = state.users.find((user) => user.id === userId);
+  //
+  const foundPosts = findPosts(state, userId);
+  // const postuser =
+  // seclect all element with the user of the following and  remove t
+  if (!isFollowing) {
+    foundPosts.forEach((foundPost) => {
+      document
+        .querySelector(`.js__post-follow-container-${foundPost.id}`)
+        ?.remove();
+      document.querySelector(`.js__post-follow-dot-${foundPost.id}`)?.remove();
     });
     following.push(userId);
     followers.push(auth.currentUser.uid);
@@ -137,7 +184,7 @@ const handleBookmark = (state, data) => {
   updateArrayData(obj, updateBookmarks);
 };
 
-export const addPostEventListener = (state) => {
+export const addPostEventListener = (state, $posts) => {
   $posts.addEventListener("click", (e) => {
     const el = e.target;
 

@@ -17,7 +17,6 @@ export const createPostHeader = (postState) => {
   const { timestamp } = postData;
 
   const postUsername = createProfileUsername(postUser);
-  console.log("Post User", postUser);
 
   // const
   const isUserFollowing =
