@@ -41,7 +41,6 @@ import {
 } from "./helpers/post.js";
 import convertHTMLToDOMNode from "./helpers/convertHtmlToDomNode.js";
 import state from "./state/state.js";
-
 // variables and constants
 const fileArr = [];
 const removeUploading = () => {
@@ -290,14 +289,14 @@ const isProfileRoute = (path) => {
 const showLoader = () => {
   document.getElementById(
     "js__container"
-  ).innerHTML = `<h2 class="">Loading....</h2>`;
+  ).innerHTML = `<div id="js__loading" class="uploading"><span class="loader"></span></div>`;
 };
 const showUploading = () => {
   document
     .getElementById("js__root")
     .appendChild(
       convertHTMLToDOMNode(
-        `<div id="js__uploading" class="uploading"><p>Please wait...</p></div>`
+        `<div id="js__uploading" class="uploading"><span class="loader"></span></div>`
       )
     );
 };
