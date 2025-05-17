@@ -12,7 +12,7 @@ export const createSignup = () => {
           <h4 class="md-semibold-text login-header-text">
             Sign up to see photos and videos from your friends.
           </h4>
-          <button disabled class="btn btn-full login-btn">Login with something</button>
+          <button disabled class="btn btn-full login-btn">Login with facebook</button>
         </header>
 
         <div class="login-divider">
@@ -47,7 +47,7 @@ export const createSignup = () => {
       </div>
 
       <div class="signup-box">
-            <span>Have an Account <a class="generic-link" href="/login">SLogin in now</a></span>
+            <span>Have an Account <a class="generic-link" href="/login">Login in now</a></span>
         </div>
     </div>`;
 

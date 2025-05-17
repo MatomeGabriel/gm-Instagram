@@ -214,7 +214,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 1px solid #f2f2f2;
+  border-top: 1px solid #eaeaea;
   gap: 6rem;
 }
 .profile-page-tabs img {
@@ -497,7 +497,7 @@ aside {
   border-radius: 0.8rem;
 }
 .nav-item-link:hover {
-  background-color: #f2f2f2;
+  background-color: #eaeaea;
 }
 .nav-item--active .nav-item-link {
   font-weight: 700;
@@ -665,6 +665,10 @@ aside {
   background: none;
   cursor: pointer;
   font-size: 14px;
+}
+.btn-login:disabled {
+  background-color: transparent !important;
+  color: #737373;
 }
 .btn-blue {
   color: #0095f6;
@@ -1031,7 +1035,7 @@ aside {
 }
 .modal-post-header {
   padding: 1.4rem 4px 1.4rem 1.6rem;
-  border-bottom: 1px solid #f2f2f2;
+  border-bottom: 1px solid #eaeaea;
 }
 .modal-comments {
   padding: 1.6rem;
@@ -1048,7 +1052,7 @@ aside {
   z-index: 10;
   display: flex;
   background-color: #fff;
-  border: 1px solid #f2f2f2;
+  border: 1px solid #eaeaea;
   gap: 1rem;
   display: none;
 }
@@ -1241,7 +1245,7 @@ aside {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid #f2f2f2;
+  border-bottom: 1px solid #eaeaea;
 }
 .modal-like-container {
   width: 100%;
@@ -1308,7 +1312,7 @@ aside {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: 1px solid #f2f2f2;
+  border: 1px solid #eaeaea;
   margin-top: 20px;
   padding: 1rem 0 2rem 0;
 }
@@ -1344,7 +1348,7 @@ aside {
 
 .signup-box {
   margin-top: 1rem;
-  border: 1px solid #f2f2f2;
+  border: 1px solid #eaeaea;
   height: 4.8rem;
   width: 100%;
   display: flex;

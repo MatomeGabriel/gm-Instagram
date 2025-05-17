@@ -6,6 +6,12 @@
   cursor: pointer;
   font-size: 14px;
 
+  &-login {
+    &:disabled {
+      background-color: transparent !important;
+      color: $color-grey;
+    }
+  }
   &-blue {
     color: $color-blue;
   }

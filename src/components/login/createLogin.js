@@ -30,7 +30,7 @@ export const createLogin = () => {
           <div class="devider"></div>
         </div>
 
-        <button class="btn btn-blue">Login with facebook</button>
+        <button disabled class="btn btn-blue btn-login">Login with facebook</button>
         </form>
 
         

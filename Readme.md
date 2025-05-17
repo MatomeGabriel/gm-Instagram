@@ -25,10 +25,10 @@ To set up the project:
 
 ```sh
 # Clone the repository
-git clone https://github.com/your-username/instagram-profile-clone.git
+git clone https://github.com/MatomeGabriel/gm-Instagram
 
 # Navigate into the project folder
-cd instagram-profile-clone
+cd instagram
 
 # Install dependencies
 npm install
@@ -48,4 +48,12 @@ npm run dev
 
 ## 📷 Screenshots
 
+![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image-3.png)
+![alt text](image-4.png)
+
 ## 🔗 Website Link
+
+https://insta-clone-by-gabriel.netlify.app/
