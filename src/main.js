@@ -82,11 +82,13 @@ const addLoginEventListener = () => {
       const email = document.getElementById("js__input-email").value;
       const password = document.getElementById("js__input-password").value;
       try {
+        showLoginLoader();
         await login(email, password);
       } catch (error) {
         alert("Failed to register ⛔" + error);
+      } finally {
+        removeLoginLoader("Login");
       }
-
       // 3. go to the posts page
     });
   // document
@@ -138,9 +140,12 @@ const addSignupEventListeners = () => {
       const name = document.getElementById("js__input-name").value;
       const username = document.getElementById("js__input-username").value;
       try {
+        showSignupLoader();
         await register(email, password, name, username);
       } catch (error) {
         alert("Failed to register ⛔" + error);
+      } finally {
+        removeSignupLoader();
       }
 
       // 3. go to the posts page
@@ -291,6 +296,7 @@ const showLoader = () => {
     "js__container"
   ).innerHTML = `<div id="js__loading" class="uploading"><span class="loader"></span></div>`;
 };
+
 const showUploading = () => {
   document
     .getElementById("js__root")
@@ -301,6 +307,33 @@ const showUploading = () => {
     );
 };
 
+const showLoginLoader = () => {
+  document.getElementById("js__form-login-btn").style.display = "none";
+  const node = convertHTMLToDOMNode(
+    '<div id="js__login-loader" class="login-loader"><span class="loader"></span></div>'
+  );
+
+  document.querySelector(".form-footer").appendChild(node);
+};
+
+const removeLoginLoader = () => {
+  document.getElementById("js__form-login-btn").style.display = "flex";
+  document.getElementById("js__login-loader").remove();
+};
+
+const showSignupLoader = () => {
+  document.getElementById("js__signup-btn").style.display = "none";
+  const node = convertHTMLToDOMNode(
+    '<div id="js__login-loader" class="login-loader"><span class="loader"></span></div>'
+  );
+
+  document.querySelector(".form-footer").appendChild(node);
+};
+
+const removeSignupLoader = () => {
+  document.getElementById("js__signup-btn").style.display = "flex";
+  document.getElementById("js__login-loader").remove();
+};
 // this function is causing problems
 // 1. let us only get the user
 // 2. lets display all things that remain static
@@ -338,7 +371,6 @@ const checkIsUserLoggedIn = () => {
       switch (route) {
         case routes.signup:
           navigateTo(routes.signup);
-          console.log("signup");
           break;
         default:
           navigateTo(routes.login);
@@ -470,16 +502,18 @@ const setSignup = () => {
   renderSignup();
   addSignupEventListeners();
 };
-
+const displayHome = () => {
+  setHome();
+  setNav();
+  setFollow();
+  setPost();
+};
 const app = () => {
   const route = getCurrentRoute();
   // cleanup()
   switch (true) {
     case route === routes.home:
-      setHome();
-      setNav();
-      setFollow();
-      setPost();
+      displayHome();
       break;
     case isProfileRoute(getCurrentRoute()):
       setProfilePage();
@@ -487,10 +521,7 @@ const app = () => {
       setNav();
       break;
     case route === routes.root:
-      setHome();
-      setNav();
-      setFollow();
-      setPost();
+      displayHome();
       break;
     case route === routes.login:
       setLogin();
