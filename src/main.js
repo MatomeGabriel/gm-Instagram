@@ -61,13 +61,14 @@ history.pushState = function (state, title, url) {
 };
 
 document.addEventListener("click", (e) => {
-  const link = e.target.closest("[data-link]");
+  const link = e.target.closest("a");
   if (link) {
     e.preventDefault();
     const path = link.getAttribute("href");
     const route = getCurrentRoute();
     if (route !== path) {
       navigateTo(path);
+      window.location.reload();
     }
   }
 });
@@ -157,7 +158,6 @@ const addProfilePageEventListeners = () => {
     .getElementById("js__profile-page-upload-btn")
     .addEventListener("click", () => {
       document.getElementById("js__file-input-upload").click();
-      console.log("Click");
     });
 
   document
@@ -215,27 +215,49 @@ const addProfilePageEventListeners = () => {
       }
     });
 };
+
 const addSuggestedProfileEventListeners = () => {
   document
     .querySelector(".suggested-profiles")
     .addEventListener("click", (e) => {
       const btn = e.target.closest("[data-can-follow]");
       const userId = btn.dataset?.userId;
-      console.log(userId);
       addSuggestedFollow(state, userId);
       btn.style.display = "none";
     });
 };
+
 const scrollToElement = (attributeValue) => {
   console.log("Attribute Value", attributeValue);
   const element = document.querySelector(`[data-post-id="${attributeValue}"]`);
   if (element) element.scrollIntoView({ behavior: "smooth", block: "start" });
 };
 
+const displayPostModal = () => {
+  document.getElementById("js__add-post-modal").style.display = "flex";
+  document.getElementById("js__overlay").style.display = "flex";
+};
+
+const clearModalPostContent = () => {
+  const img = document.getElementById("js__add-post-modal-img");
+  const content = document.getElementById("js__add-post-modal-textarea");
+
+  if (img) img.src = "";
+  if (content) content.value = "";
+};
+
+const hideModal = () => {
+  document.getElementById("js__add-post-modal").style.display = "none";
+  document.getElementById("js__overlay").style.display = "none";
+};
 const addNavEventListeners = () => {
   document.getElementById("js__add-post-btn").addEventListener("click", (e) => {
-    document.getElementById("js__add-post-modal").style.display = "flex";
-    document.getElementById("js__overlay").style.display = "flex";
+    displayPostModal();
+  });
+
+  document.getElementById("js__overlay").addEventListener("click", () => {
+    hideModal();
+    clearModalPostContent();
   });
 
   document
@@ -267,7 +289,6 @@ const addNavEventListeners = () => {
 
       if (!file) {
         alert("Please insert an image to continue");
-        console.log("Please insert an image");
         return;
       }
       try {
@@ -461,10 +482,6 @@ const setNav = () => {
 
 const setPost = async () => {
   try {
-    // const { renderPosts, addPostEventListener } = await import(
-    //   "./helpers/post.js"
-    // );
-
     renderPosts(getPosts(), document.getElementById("js__posts"));
     addPostEventListener(getState(), document.getElementById("js__posts"));
   } catch (error) {

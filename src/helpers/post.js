@@ -3,11 +3,7 @@ import likeIcon from "../assets/like.svg";
 import likedIcon from "../assets/liked.svg";
 import bookmarkIcon from "../assets/bookmark.svg";
 import bookmarkedIcon from "../assets/bookmarked.svg";
-import {
-  updateBookmarks,
-  updateBookMarks,
-  updatePostLikes,
-} from "../state/manageState";
+import { updateBookmarks, updatePostLikes } from "../state/manageState";
 import { updateArrayData, updateUserLike } from "./user";
 import { auth } from "../firebase/config";
 

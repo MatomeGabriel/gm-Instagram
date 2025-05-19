@@ -7,7 +7,6 @@ import { createProfileUsername } from "./createProfileUsername";
 import { auth } from "../../firebase/config";
 
 const getTimeAgo = (timestamp) => {
-  // const timePast = new Date(timestamp.seconds);
   const timePast = timestamp.toDate();
   return formatDistanceToNow(timePast, { addSuffix: true });
 };

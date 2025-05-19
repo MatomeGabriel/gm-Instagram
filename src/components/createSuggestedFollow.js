@@ -15,7 +15,10 @@ const createProfiles = () => {
     .filter((user) => !user.followers.includes(auth.currentUser.uid))
     .filter((user) => user.id !== auth.currentUser.uid);
 
-  usersToFollow.forEach((user) => {
+  const FiveUsersToFollow =
+    usersToFollow.length > 5 ? usersToFollow.slice(0, 5) : usersToFollow;
+
+  FiveUsersToFollow.forEach((user) => {
     added += createUserProfile({
       ...user,
       avatarSize: "--sm",

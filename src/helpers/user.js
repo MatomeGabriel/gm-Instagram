@@ -103,7 +103,7 @@ export const createPost = async (file) => {
   try {
     const postId = doc(collection(db, "posts")).id;
 
-    const imageRef = ref(storage, `posts/${postId}`);
+    const imageRef = ref(storage, `posts/${user.uid}/${postId}`);
 
     await uploadBytes(imageRef, file);
     const downloadURL = await getDownloadURL(imageRef);
