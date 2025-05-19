@@ -60,18 +60,18 @@ history.pushState = function (state, title, url) {
   window.dispatchEvent(new Event("urlChange")); // Dispatch custom event
 };
 
-document.addEventListener("click", (e) => {
-  const link = e.target.closest("a");
-  if (link) {
-    e.preventDefault();
-    const path = link.getAttribute("href");
-    const route = getCurrentRoute();
-    if (route !== path) {
-      navigateTo(path);
-      window.location.reload();
-    }
-  }
-});
+// document.addEventListener("click", (e) => {
+//   const link = e.target.closest("a");
+//   if (link) {
+//     e.preventDefault();
+//     const path = link.getAttribute("href");
+//     const route = getCurrentRoute();
+//     if (route !== path) {
+//       navigateTo(path);
+//       window.location.reload();
+//     }
+//   }
+// });
 
 const addLoginEventListener = () => {
   // listen for login clicks
@@ -109,6 +109,7 @@ const addLoginEventListener = () => {
   //     // 3. go to the posts page
   //   });
 };
+
 const addSignupEventListeners = () => {
   // listen for login clicks
   // document
