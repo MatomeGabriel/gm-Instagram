@@ -5,6 +5,3 @@ export const routes = {
   signup: "/signup",
   profile: "/profile",
 };
-
-// step 1. Visit instagram without any login, using any url
-// 1.1 be pushed to the login page.

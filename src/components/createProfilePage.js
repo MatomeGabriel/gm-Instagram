@@ -143,8 +143,7 @@ const createProfilePageTabs = () => {
 export const createProfilePage = (userId, urlUserId) => {
   // console.log(user.id === urlUserId);
   const userPosts = getPostsByUserId(userId);
-  // console.log(user);
-  console.log(userPosts);
+
   //    {
   //     id: uid,
   //     username: username,

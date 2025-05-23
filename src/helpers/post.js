@@ -8,7 +8,6 @@ import { updateArrayData, updateUserLike } from "./user";
 import { auth } from "../firebase/config";
 
 export const renderPosts = (posts, $postEL) => {
-  console.log(posts, $postEL);
   posts.forEach((post) => {
     const postNode = createPost(post);
     $postEL?.appendChild(postNode);

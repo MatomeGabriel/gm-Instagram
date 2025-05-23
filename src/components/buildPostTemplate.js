@@ -61,7 +61,6 @@ const buildPostInfo = (postData, user, currentUser) => {
     currentUser.bookmarks.find((postId) => postId === id)
   );
 
-  console.log("User Bookmarked", userBookmarked);
   return `<div class="post-info">
                       <section class="post-info-icons">
                         <div class="post-info-icons-box-1">

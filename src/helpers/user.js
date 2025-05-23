@@ -143,7 +143,6 @@ export const updateArrayData = async (obj, callBackFn) => {
   try {
     //   save to database
     const ref = doc(db, collection, docId);
-    console.log(docData);
     await updateDoc(ref, docData);
 
     getArrayData(obj, callBackFn);
@@ -160,7 +159,6 @@ export const getArrayData = async (obj, callBackFn) => {
 
     if (snapShot.exists()) {
       const data = snapShot.data()[docProperty];
-      console.log(data);
       callBackFn(docId, data);
       return data;
     } else {

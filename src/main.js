@@ -88,7 +88,7 @@ const addLoginEventListener = () => {
       } catch (error) {
         alert("Failed to register ⛔" + error);
       } finally {
-        removeLoginLoader("Login");
+        removeLoginLoader();
       }
       // 3. go to the posts page
     });
@@ -229,7 +229,6 @@ const addSuggestedProfileEventListeners = () => {
 };
 
 const scrollToElement = (attributeValue) => {
-  console.log("Attribute Value", attributeValue);
   const element = document.querySelector(`[data-post-id="${attributeValue}"]`);
   if (element) element.scrollIntoView({ behavior: "smooth", block: "start" });
 };
@@ -364,7 +363,6 @@ const removeSignupLoader = () => {
 
 // User login checks if the user is logged in and get the user data
 const checkIsUserLoggedIn = () => {
-  console.log("Is user Logged In Ran");
   showLoader();
   auth.onAuthStateChanged(async (currentUser) => {
     const route = getCurrentRoute();
@@ -387,7 +385,6 @@ const checkIsUserLoggedIn = () => {
         }
       } catch (error) {
         console.log(error);
-        // showError();
       }
     } else {
       switch (route) {
@@ -407,16 +404,14 @@ window.addEventListener("urlChange", () => {
   showLoader();
   setTimeout(() => {
     app();
-  }, 300);
+  }, 200);
 });
 
 window.addEventListener("popstate", function (event) {
-  console.log("Pop Ran");
   checkIsUserLoggedIn();
   app();
 });
 
-console.log("Top Level user Login about to run");
 checkIsUserLoggedIn();
 
 // Functions
@@ -462,9 +457,7 @@ const renderProfilePage = () => {
 
 const setProfilePage = () => {
   cleanup();
-  console.log("After Cleanup");
   renderProfilePage();
-  console.log("After Render");
   addProfilePageEventListeners();
 };
 
@@ -535,7 +528,6 @@ const app = () => {
       break;
     case isProfileRoute(getCurrentRoute()):
       setProfilePage();
-      console.log("Is done");
       setNav();
       break;
     case route === routes.root:

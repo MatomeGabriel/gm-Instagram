@@ -28,7 +28,7 @@ export const createNavigation = () => {
 
                 <!-- Search -->
                 <li class="nav-item hidden">
-                  <a data-link href="/home" class="nav-item-link">
+                  <a data-link  class="nav-item-link">
                     <span class="material-symbols-outlined nav-item-icon"
                       >search</span
                     >
@@ -38,7 +38,7 @@ export const createNavigation = () => {
 
                 <!-- Explore -->
                 <li class="nav-item">
-                  <a data-link href="/home" class="nav-item-link">
+                  <a data-link  class="nav-item-link">
                     <span class="material-symbols-outlined nav-item-icon"
                       >explore</span
                     >
@@ -48,7 +48,7 @@ export const createNavigation = () => {
 
                 <!-- Reels -->
                 <li class="nav-item">
-                  <a data-link href="/home" class="nav-item-link">
+                  <a data-link  class="nav-item-link">
                     <span class="material-symbols-outlined nav-item-icon"
                       >movie</span
                     >
@@ -97,7 +97,7 @@ export const createNavigation = () => {
 
                 <!-- More -->
                 <li class="nav-item hidden">
-                  <a data-link href="/home" class="nav-item-link">
+                  <a data-link  class="nav-item-link">
                     <span class="material-symbols-outlined nav-item-icon"
                       >more_horiz</span
                     >
