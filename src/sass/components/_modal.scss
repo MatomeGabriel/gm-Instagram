@@ -59,11 +59,12 @@
   }
   textarea {
     width: 100%;
-    min-height: 8rem;
+    min-height: 10rem;
     outline: none;
     border-radius: 8px;
     font-size: 1.6rem;
     padding: 1rem;
+    border: 1px solid $color-grey;
   }
   h3 {
     margin-bottom: 2rem;
@@ -126,11 +127,12 @@
   textarea,
   .textarea {
     width: 100%;
-    min-height: 6.2rem;
+    min-height: 10rem;
     outline: none;
     border-radius: 8px;
     font-size: 1.6rem;
     padding: 1rem;
+    border: 1px solid $color-grey;
   }
   label {
     @include sm-semibold-text;

@@ -1024,6 +1024,10 @@ aside {
   padding: 8px 0;
 }
 
+.profile-page-bio {
+  line-height: 1.3;
+}
+
 .modal {
   position: absolute;
   width: 80vw;
@@ -1083,11 +1087,12 @@ aside {
 }
 .add-post-modal textarea {
   width: 100%;
-  min-height: 8rem;
+  min-height: 10rem;
   outline: none;
   border-radius: 8px;
   font-size: 1.6rem;
   padding: 1rem;
+  border: 1px solid #737373;
 }
 .add-post-modal h3 {
   margin-bottom: 2rem;
@@ -1150,11 +1155,12 @@ aside {
 .modal-profile-page textarea,
 .modal-profile-page .textarea {
   width: 100%;
-  min-height: 6.2rem;
+  min-height: 10rem;
   outline: none;
   border-radius: 8px;
   font-size: 1.6rem;
   padding: 1rem;
+  border: 1px solid #737373;
 }
 .modal-profile-page label {
   font-size: 14px;

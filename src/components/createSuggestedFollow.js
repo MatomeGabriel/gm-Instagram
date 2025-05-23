@@ -6,7 +6,7 @@ import { createUserProfile } from "./createUserProfile";
 const createSuggestedText = () => {
   return `<div class="suggested-texts">
                     <span class="suggested-text">Suggested for you</span>
-                    <a href="" class="suggested-link">See all</a>
+                   
                   </div>`;
 };
 const createProfiles = () => {
